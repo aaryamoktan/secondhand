@@ -9,7 +9,7 @@ const Registration = () => {
     {
         e.preventDefault();
         axios.post("http://localhost:4000/regist",{id,password,gender,number})
-        .then(result=>console.log(result))
+        .then(result=>alert(result.data))
         .catch(err=>console.log(err))
     }
   return (

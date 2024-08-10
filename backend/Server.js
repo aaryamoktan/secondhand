@@ -27,10 +27,11 @@ app.post("/regist",async(req,res)=>
     const savesb = new sbmodal({userId,password:haspass,gender,number})
     const check = await sbmodal.findOne({userId})
     if(!check){
-        await savesb.save()
+        await savesb.save();
+        res.json("registration sucesfully")
     }
     else{
-        res.status(400).json("userId is exit") 
+        res.json("userId is exit") 
     }
     
     console.log(userId,password,gender,number)
