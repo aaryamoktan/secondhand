@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 const Shome = () => {
     const [userId ,setId] = useState()
     const [password,setPassword] = useState()
+    const navigation = useNavigate()
     const login = (e)=>
     {
         e.preventDefault()
-        console.log(userId,password)
         axios.post("http://localhost:4000/login",{userId,password})
-        .then(result=>alert(result.data))
+        .then((result)=>{
+            alert(result.data)
+            if(result.data=="login"){
+                navigation("/home")
+            }
+        })
         .catch(err=>console.log(err))
     }
   return (
@@ -25,7 +31,7 @@ const Shome = () => {
                 {
                     setPassword(e.target.value)
                 }
-               } placeholder='Password' className='w-[90%] h-[5vh] text-[white] font-serif rounded-2xl mt-5 bg-[#495364] text-center text-xl'/>
+               } type="password" placeholder='Password' className='w-[90%] h-[5vh] text-[white] font-serif rounded-2xl mt-5 bg-[#495364] text-center text-xl'/>
                <br/>
                <button onClick={login} className='text-[white] w-[30%] h-[5vh] bg-[#495364] mt-10 rounded-lg font-serif'>Login</button>
             </form>

@@ -20,7 +20,7 @@ app.post("/regist",async(req,res)=>
     const number = req.body.number
     const salgen = 10;
     const haspass =await  bcrypt.hash(password,salgen)
-    const savesb = new sbmodal({userId,password,gender,number})
+    const savesb = new sbmodal({userId,password:haspass,gender,number})
     const check = await sbmodal.findOne({userId})
     if(!check){
         await savesb.save();
@@ -29,8 +29,6 @@ app.post("/regist",async(req,res)=>
     else{
         res.json("userId is exit") 
     }
-    
-    console.log(userId,password,gender,number)
     }
     catch(err)
     {
@@ -44,17 +42,17 @@ app.post("/login",async(req,res)=>
         const {userId,password} = req.body
     const find = await sbmodal.findOne({userId})
     if(find)
-    {
-        console.log(password)
-        console.log(find.userId)
-       if(password == find.password){
+    { const match = await bcrypt.compare(password,find.password)
+       if(match){
         res.json("login")
-        console.log("done")
+       
        }
        else{
         res.json("password doesnot match")
-        console.log("not match")
        }
+    }
+    else{
+        res.json("email doesnot exit")
     }
     }
     catch(err)
