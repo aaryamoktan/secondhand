@@ -11,10 +11,6 @@ app.use(cors())
 mongoose.connect(process.env.URL)
 .then(result=>console.log(result))
 .catch(err=>console.log(err))
-app.post("/login",(req,res)=>{
-    const {userId,password} = req.body;
-}
-)
 app.post("/regist",async(req,res)=>
 {
     try{
@@ -24,7 +20,7 @@ app.post("/regist",async(req,res)=>
     const number = req.body.number
     const salgen = 10;
     const haspass =await  bcrypt.hash(password,salgen)
-    const savesb = new sbmodal({userId,password:haspass,gender,number})
+    const savesb = new sbmodal({userId,password,gender,number})
     const check = await sbmodal.findOne({userId})
     if(!check){
         await savesb.save();
@@ -35,6 +31,31 @@ app.post("/regist",async(req,res)=>
     }
     
     console.log(userId,password,gender,number)
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
+    
+})
+app.post("/login",async(req,res)=>
+{
+    try{
+        const {userId,password} = req.body
+    const find = await sbmodal.findOne({userId})
+    if(find)
+    {
+        console.log(password)
+        console.log(find.userId)
+       if(password == find.password){
+        res.json("login")
+        console.log("done")
+       }
+       else{
+        res.json("password doesnot match")
+        console.log("not match")
+       }
+    }
     }
     catch(err)
     {

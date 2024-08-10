@@ -6,8 +6,9 @@ const Shome = () => {
     const login = (e)=>
     {
         e.preventDefault()
-        axios.post("api",{userId,password})
-        .then(result=>console.log(result))
+        console.log(userId,password)
+        axios.post("http://localhost:4000/login",{userId,password})
+        .then(result=>alert(result.data))
         .catch(err=>console.log(err))
     }
   return (
@@ -15,12 +16,12 @@ const Shome = () => {
         <div className='w-[30%] h-[60vh] bg-[#fafafa] shadow-amber-500 rounded-xl text-center   '>
             <form className=' text-center text-white'>
                <h1 className='mt-10 font-serif font-semibold text-3xl text-[#495364]'>Login</h1>
-               <input onChange={(e)=>
+               <input name="user" onChange={(e)=>
                 {
                     setId(e.target.value)
                 }
                } placeholder='User Id' className='w-[90%] h-[5vh]  font-serif rounded-2xl mt-20 bg-[#495364] text-center text-xl'/><br/>
-               <input onChange={(e)=>
+               <input name="password" onChange={(e)=>
                 {
                     setPassword(e.target.value)
                 }

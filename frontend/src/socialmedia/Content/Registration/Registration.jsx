@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 const Registration = () => {
     const [id, setId] = useState()
     const [password,setPassword] = useState();
     const [gender,setgender] = useState();
     const [number,setnumber] = useState();
+    const navigation = useNavigate()
     const regist = (e)=>
     {
         e.preventDefault();
         axios.post("http://localhost:4000/regist",{id,password,gender,number})
-        .then(result=>alert(result.data))
+        .then((result)=>{
+            alert(result.data)
+        if(result.data==="registration sucesfully"){
+            navigation("/login")
+        }
+    else{
+        alert(result.data)
+    }})
         .catch(err=>console.log(err))
     }
   return (
