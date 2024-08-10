@@ -1,8 +1,13 @@
 import React from 'react'
-
+import Nevbar from '../../Component/Nevbar'
 const Land = () => {
   return (
-    <div>Land</div>
+    <>
+    <div className='flex'>
+        <Nevbar/>
+        
+    </div>
+    </>
   )
 }
 
