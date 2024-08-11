@@ -8,7 +8,7 @@ import { RiFolderHistoryLine } from "react-icons/ri";
 import { FaBars } from "react-icons/fa";
 const Nevbar = () => {
   return (
-    <><div style={{borderRight:"1px solid #d2cfcf"}} className='lg:w-[20%] lg:h-[100vh]  '>
+    <><div style={{borderRight:"1px solid #d2cfcf"}} className='lg:w-[20%] lg:h-[100vh] sticky'>
         <h1 className='mt-10 ml-14 font-serif text-3xl text-[#060606]'><a href="/home">Social Media</a></h1>
         <ul className='mt-20 ml-20'>
             <li className='mt-10 font-serif text-lg'><a className='flex gap-2' href=""><p className='mt-1'><MdHomeFilled/></p> Home</a></li>

@@ -1,5 +1,8 @@
 const mongoose = require("mongoose")
 const sbSchema = new mongoose.Schema({
+    userName:{
+        type:String
+    },
     userId:{
         type:String
     },

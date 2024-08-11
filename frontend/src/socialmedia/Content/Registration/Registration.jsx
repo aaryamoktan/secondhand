@@ -6,19 +6,16 @@ const Registration = () => {
     const [password,setPassword] = useState();
     const [gender,setgender] = useState();
     const [number,setnumber] = useState();
+    const [userName,setuserName] = useState();
     const navigation = useNavigate()
     const regist = (e)=>
     {
         e.preventDefault();
-        axios.post("http://localhost:4000/regist",{id,password,gender,number})
+        axios.post("http://localhost:4000/regist",{userName,id,password,gender,number})
         .then((result)=>{
-            alert(result.data)
-        if(result.data==="registration sucesfully"){
+            console.log(result.data)
             navigation("/login")
-        }
-    else{
-        alert(result.data)
-    }})
+            }) 
         .catch(err=>console.log(err))
     }
   return (
@@ -27,11 +24,16 @@ const Registration = () => {
         <div className='w-[30%] h-[60vh] bg-[#fafafa] shadow-amber-500 rounded-xl text-center   '>
             <form className=' text-center text-white'>
                <h1 className='mt-10 font-serif font-semibold text-3xl text-[#495364]'>Registration</h1>
+               <input name="userName" onChange={(e)=>
+                {
+                    setuserName(e.target.value)
+                }
+               } placeholder='User name' className='w-[90%] h-[5vh]  font-serif rounded-2xl mt-10 bg-[#495364] text-center text-xl'/><br/>
                <input name="id" onChange={(e)=>
                 {
                     setId(e.target.value)
                 }
-               } placeholder='User Id' className='w-[90%] h-[5vh]  font-serif rounded-2xl mt-10 bg-[#495364] text-center text-xl'/><br/>
+               } placeholder="Email ID" className='w-[90%] h-[5vh]  font-serif rounded-2xl mt-2 bg-[#495364] text-center text-xl'/><br/>
                <select name="gender" onChange={(e)=>
                 {
                     setgender(e.target.value)
