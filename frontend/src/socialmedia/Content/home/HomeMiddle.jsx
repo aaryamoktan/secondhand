@@ -4,20 +4,31 @@ import { AiOutlineLike } from "react-icons/ai";
 import { BiCommentDots } from "react-icons/bi";
 import { CiSaveDown2 } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const HomeMiddle = () => {
-    const [loog,setloog] = useState('')
+    const [id,setloog] = useState('')
     const [search,setsearch] = useState();
-    const [like,setLike] = useState(0)
+    const [like,setLike] = useState()
+    const [data,setData] = useState()
     const navigate = useNavigate();
     useEffect(()=>
     {
         setloog(localStorage.getItem('loggedInUser'))
     },[])
+    useEffect(()=>
+        {
+          axios.get(`http://localhost:4000/getdata/`+id)
+          .then(result=>setData(result))
+          .catch(err=>console.log(err))
+        },[])
     const mydate = new Date()
+    console.log(data)
   return (
     <div  className='lg:w-[55%] lg:h-[100vh] '>
-       {loog}
+    
+       
         <div className=''>
+            
             <input onChange={(e)=>{
                 setsearch(e.target.value)
             }} style={{border:"2px solid #969696"}}  className='lg:w-[60%] lg:h-[5vh] rounded-lg ml-[23%] mt-10' type="text" placeholder='Search'/>

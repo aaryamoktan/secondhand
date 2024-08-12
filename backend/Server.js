@@ -52,15 +52,29 @@ app.post("/regist",signupValadiationn,async(req,res)=>
     }
     
 })
-app.get("/home",ensure,(req,res)=>{
+app.get("/home",ensure,async(req,res)=>{
     
-    res.status(200).json([
-        {
-            name:"mobile",
-            price:10000
-        }
-    ])
+  try{
+  }
+  catch(err)
+  {
+    console.log(err)
+  }
 })
+app.get("/getdata/:loog",async(req,res)=>{
+    
+    try{
+        
+      const id = req.params.loog;
+      await sbmodal.findById({_id:id})
+      .then((result)=>res.json(result))
+      .catch(err=>console.log(err))
+    }
+    catch(err)
+    {
+      console.log(err)
+    }
+  })
 app.post("/login",loginValadiationn,async(req,res)=>
 {
     try{
