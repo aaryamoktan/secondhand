@@ -14,8 +14,8 @@ const Shome = () => {
             if(result.data.sucess){
                 alert(result.data.message)
                 localStorage.setItem('token',result.data.jwtToken);
-                localStorage.setItem("loggedInUser",result.data.userName)
-                navigation("/home",{name:result.data.userName})
+                localStorage.setItem("loggedInUser",result.data.user_id)
+                navigation("/home")
 
             }
         })

@@ -78,6 +78,7 @@ app.post("/login",loginValadiationn,async(req,res)=>
             sucess:true,
             jwtToken,
             userId:find.userId,
+            user_id:find._id,
             userName:find.userName})
        }
        else{
