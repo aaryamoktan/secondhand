@@ -6,13 +6,19 @@ const ensure = require("./middleware/auth")
 const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt")
 const dotenv = require("dotenv")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")
 const {signupValadiationn,loginValadiationn} = require("./middleware/velit")
 const sbmodal = require("./database/sdatabase")
 const app = express();
 app.use(bodyParser.json())
 app.use(express.json())
 dotenv.config()
-app.use(cors())
+app.use(cors({
+    origin:process.env.FRONT_URL,
+    Credentials:true
+}))
+
 mongoose.connect(process.env.URL)
 .then(result=>console.log(result))
 .catch(err=>console.log(err))
@@ -92,6 +98,7 @@ app.post("/login",loginValadiationn,async(req,res)=>
     }
     
 })
+
 app.listen(process.env.PORT,(req,res)=>
 {
     console.log("hekkwp")
