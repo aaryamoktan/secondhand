@@ -16,7 +16,7 @@ const HomeMiddle = () => {
     const mydate = new Date()
   return (
     <div  className='lg:w-[55%] lg:h-[100vh] '>
-        {loog}
+       {loog}
         <div className=''>
             <input onChange={(e)=>{
                 setsearch(e.target.value)

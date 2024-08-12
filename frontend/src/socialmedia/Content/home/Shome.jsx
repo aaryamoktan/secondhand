@@ -10,12 +10,12 @@ const Shome = () => {
         e.preventDefault()
         axios.post("http://localhost:4000/login",{userId,password})
         .then((result)=>{
-            console.log(result.data.userId)
+            console.log(result.data.userName)
             if(result.data.sucess){
                 alert(result.data.message)
                 localStorage.setItem('token',result.data.jwtToken);
                 localStorage.setItem("loggedInUser",result.data.userName)
-                navigation("/home")
+                navigation("/home",{name:result.data.userName})
 
             }
         })

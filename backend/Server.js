@@ -78,7 +78,7 @@ app.post("/login",loginValadiationn,async(req,res)=>
             sucess:true,
             jwtToken,
             userId:find.userId,
-            nameName:find.userName})
+            userName:find.userName})
        }
        else{
         res.status(409).json({message:"password doesnot match",sucess:false})
