@@ -1,6 +1,8 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const jwt = require("jsonwebtoken");
 const cors = require("cors")
+const ensure = require("./middleware/auth")
 const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt")
 const dotenv = require("dotenv")
@@ -29,17 +31,29 @@ app.post("/regist",signupValadiationn,async(req,res)=>
     const check = await sbmodal.findOne({userId})
     if(!check){
         await savesb.save();
-        res.json("registration sucesfully")
+        res.status(200).json({message:"registration sucesfully",success:true})
     }
     else{
-        res.json("userId is exit") 
+        res.status(409).json({message:'user is already exit,you can login',success:false}) 
     }
     }
     catch(err)
     {
-        console.log(err)
+       res.status(500).json({
+        message:"Internal server Error",
+        sucess:false
+       })
     }
     
+})
+app.get("/home",ensure,(req,res)=>{
+    
+    res.status(200).json([
+        {
+            name:"mobile",
+            price:10000
+        }
+    ])
 })
 app.post("/login",loginValadiationn,async(req,res)=>
 {
@@ -49,19 +63,32 @@ app.post("/login",loginValadiationn,async(req,res)=>
     if(find)
     { const match = await bcrypt.compare(password,find.password)
        if(match){
-        res.json("login")
+        const jwtToken = jwt.sign(
+            {email:find.userId,_id:find._id},
+            process.env.JWT_SECRET,
+            { expiresIn: '24h' }
+        )
+        res.status(200).json({message:"login ",
+            sucess:true,
+            jwtToken,
+            userId:find.userId,
+            nameName:find.userName})
        }
        else{
-        res.json("password doesnot match")
+        res.status(409).json({message:"password doesnot match",sucess:false})
        }
     }
     else{
-        res.json("email doesnot exit")
+        res.status(409).json({message:"email doesnot exit",sucess:false})
     }
     }
     catch(err)
     {
-        console.log(err)
+        res.status(409)
+        .json({
+            message:"internal server error",
+            sucess:false
+        })
     }
     
 })

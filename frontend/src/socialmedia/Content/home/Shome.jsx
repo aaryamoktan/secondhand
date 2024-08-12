@@ -10,9 +10,11 @@ const Shome = () => {
         e.preventDefault()
         axios.post("http://localhost:4000/login",{userId,password})
         .then((result)=>{
-            alert(result.data)
-            if(result.data=="login"){
+            console.log(result.data.userId)
+            if(result.data.sucess){
+                alert(result.data.message)
                 navigation("/home")
+
             }
         })
         .catch(err=>console.log(err))
