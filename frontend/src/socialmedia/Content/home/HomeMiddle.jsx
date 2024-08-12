@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SlOptionsVertical } from "react-icons/sl";
 import { AiOutlineLike } from "react-icons/ai";
 import { BiCommentDots } from "react-icons/bi";
 import { CiSaveDown2 } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 const HomeMiddle = () => {
+    const [loog,setloog] = useState('')
     const [search,setsearch] = useState();
     const [like,setLike] = useState(0)
+    const navigate = useNavigate();
+    useEffect(()=>
+    {
+        setloog(localStorage.getItem('loggedInUser'))
+    },[])
     const mydate = new Date()
   return (
     <div  className='lg:w-[55%] lg:h-[100vh] '>
+        {loog}
         <div className=''>
             <input onChange={(e)=>{
                 setsearch(e.target.value)

@@ -13,6 +13,8 @@ const Shome = () => {
             console.log(result.data.userId)
             if(result.data.sucess){
                 alert(result.data.message)
+                localStorage.setItem('token',result.data.jwtToken);
+                localStorage.setItem("loggedInUser",result.data.userName)
                 navigation("/home")
 
             }

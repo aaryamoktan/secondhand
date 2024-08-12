@@ -64,7 +64,7 @@ app.post("/login",loginValadiationn,async(req,res)=>
     { const match = await bcrypt.compare(password,find.password)
        if(match){
         const jwtToken = jwt.sign(
-            {email:find.userId,_id:find._id},
+            {userId:find.userId,_id:find._id},
             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         )
