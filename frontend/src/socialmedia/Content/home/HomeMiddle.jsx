@@ -6,21 +6,16 @@ import { CiSaveDown2 } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const HomeMiddle = () => {
-    const [id,setloog] = useState('')
+    const [loog,setloog] = useState('')
     const [search,setsearch] = useState();
     const [like,setLike] = useState()
     const [data,setData] = useState()
+    console.log(loog)
     const navigate = useNavigate();
     useEffect(()=>
     {
         setloog(localStorage.getItem('loggedInUser'))
     },[])
-    useEffect(()=>
-        {
-          axios.get(`http://localhost:4000/getdata/`+id)
-          .then(result=>setData(result.data.userName))
-          .catch(err=>console.log(err))
-        },[])
     const mydate = new Date()
     
   return (

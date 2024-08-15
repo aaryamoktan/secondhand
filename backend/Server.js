@@ -59,14 +59,11 @@ app.get("/home",ensure,async(req,res)=>{
     console.log(err)
   }
 })
-app.get("/getdata/:loog",async(req,res)=>{
+app.get("/getdata/:id",async(req,res)=>{
     
     try{
         
-      const id = req.params.loog;
-      await sbmodal.findById({_id:id})
-      .then((result)=>res.json(result))
-      .catch(err=>console.log(err))
+    
     }
     catch(err)
     {
