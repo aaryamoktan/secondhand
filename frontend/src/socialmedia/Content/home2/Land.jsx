@@ -1,6 +1,7 @@
 import React from 'react'
 import Nevbar from '../../Component/Nevbar'
 import HomeMiddle from '../home/HomeMiddle'
+import Lefthome from '../home/Lefthome'
 const Land = () => {
   
 
@@ -10,6 +11,7 @@ const Land = () => {
       
         <Nevbar/>
         <HomeMiddle/>
+        <Lefthome/>
         
     </div>
     </>

@@ -18,17 +18,14 @@ const HomeMiddle = () => {
     useEffect(()=>
         {
           axios.get(`http://localhost:4000/getdata/`+id)
-          .then(result=>setData(result))
+          .then(result=>setData(result.data.userName))
           .catch(err=>console.log(err))
         },[])
     const mydate = new Date()
-    console.log(data)
+    
   return (
     <div  className='lg:w-[55%] lg:h-[100vh] '>
-    
-       
-        <div className=''>
-            
+        <div className=''>  
             <input onChange={(e)=>{
                 setsearch(e.target.value)
             }} style={{border:"2px solid #969696"}}  className='lg:w-[60%] lg:h-[5vh] rounded-lg ml-[23%] mt-10' type="text" placeholder='Search'/>

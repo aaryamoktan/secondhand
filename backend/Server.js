@@ -7,7 +7,6 @@ const bodyParser = require("body-parser")
 const bcrypt = require("bcrypt")
 const dotenv = require("dotenv")
 const session = require("express-session")
-const MongoStore = require("connect-mongo")
 const {signupValadiationn,loginValadiationn} = require("./middleware/velit")
 const sbmodal = require("./database/sdatabase")
 const app = express();
@@ -22,7 +21,7 @@ app.use(cors({
 mongoose.connect(process.env.URL)
 .then(result=>console.log(result))
 .catch(err=>console.log(err))
-app.post("/regist",signupValadiationn,async(req,res)=>
+app.post("/regist"  ,async(req,res)=>
 {
     try{
         const userId = req.body.id;
@@ -30,7 +29,6 @@ app.post("/regist",signupValadiationn,async(req,res)=>
     const gender = req.body.gender;
     const number = req.body.number
     const userName = req.body.userName
-    console.log(userName)
     const salgen = 10;
     const haspass =await  bcrypt.hash(password,salgen)
     const savesb = new sbmodal({userName,userId,password:haspass,gender,number})
