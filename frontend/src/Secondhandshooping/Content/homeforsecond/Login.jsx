@@ -25,7 +25,7 @@ const Login = () => {
                <button onClick={login} className='text-[white] w-[30%] h-[5vh] bg-[#495364] mt-10 rounded-lg font-serif'>Login</button>
             </form>
             <p className='text-[#495364] font-serif mt-8'>if you don't have account </p>
-            <button className='text-[white] w-[30%] h-[5vh] bg-[#495364]  rounded-lg font-serif mt-2'><a href="/registration">Registration</a></button>
+            <button className='text-[white] w-[30%] h-[5vh] bg-[#495364]  rounded-lg font-serif mt-2'><a href="/Sregist">Registration</a></button>
         </div>
     </div>
   )
