@@ -12,7 +12,7 @@ const Regist = () => {
   const [number,setnumber] = useState();
   return (
     <div className='w-[100%] h-[100vh] bg-[#4078d7] flex justify-center items-center'>
-    <div className='w-[30%] h-[60vh] bg-[#fafafa] shadow-amber-500 rounded-xl text-center   '>
+    <div className='w-[30%] h-[60vh] bg-[#9dbffc] shadow-amber-500 rounded-xl text-center   '>
         <form className=' text-center text-white'>
            <h1 className='mt-10 font-serif font-semibold text-3xl text-[#4078d7]'>Registration</h1>
            <input name="userName" onChange={(e)=>
