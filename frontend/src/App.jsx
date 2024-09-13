@@ -5,6 +5,8 @@ import Shome from './socialmedia/Content/home/Shome';
 import Registration from './socialmedia/Content/Registration/Registration';
 import Land from './socialmedia/Content/home2/Land';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from './Secondhandshooping/Content/homeforsecond/Login';
+import Regist from './Secondhandshooping/Content/homeforsecond/Regist';
 function App() {
   const [count, setCount] = useState(0)
   const router = createBrowserRouter([
@@ -23,6 +25,15 @@ function App() {
       ,{
         path:"/home",
         element:<Land/>
+      },
+      {
+        path:"/SLogin",
+        element:<Login/>
+      }
+      ,
+      {
+        path:"/",
+        element:<Regist/>
       }
     ]
     }
